@@ -1,3 +1,3 @@
 module github.com/go-utils/filc
 
-go 1.18
+go 1.15
