@@ -39,9 +39,12 @@ func look(value interface{}, parent string) []string {
 			key = parent + "." + key
 		}
 
-		if field.Kind() == reflect.Ptr && field.IsNil() {
-			nilFields = append(nilFields, key)
-			continue
+		switch field.Kind() {
+		case reflect.Ptr, reflect.Interface:
+			if field.IsNil() {
+				nilFields = append(nilFields, key)
+				continue
+			}
 		}
 
 		if f.Anonymous {

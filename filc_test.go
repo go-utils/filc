@@ -10,6 +10,7 @@ type (
 	Case2 struct{}
 	Case3 struct{}
 	Case4 struct{}
+	Case5 interface{}
 )
 
 type Example1 struct {
@@ -28,6 +29,7 @@ type Example2 struct {
 }
 
 type Example3 struct {
+	Interface Case5
 	Example2
 }
 
@@ -119,6 +121,7 @@ func TestLook(t *testing.T) {
 				},
 			},
 			want: []string{
+				"Example3.Interface",
 				"Example3.Example2.Case1",
 				"Example3.Example2.Case3",
 				"Example3.Example2.Case4",
@@ -130,6 +133,7 @@ func TestLook(t *testing.T) {
 				value: new(Example3),
 			},
 			want: []string{
+				"Example3.Interface",
 				"Example3.Example2.Case1",
 				"Example3.Example2.Case2",
 				"Example3.Example2.Case3",
